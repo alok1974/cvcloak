@@ -1,0 +1,348 @@
+QMainWindow	                                    {background-color: rgb(48,48,48);
+                                                background: rgb(48,48,48);
+                                                color: rgb(200,200,200);
+                                                font-family: "Tahoma";
+                                                font-size: 11px;
+                                                border-style: solid;
+                                                }
+
+QMainWindow::disabled                           {color: rgb(180,180,180)}
+
+QMainWindow::separator                          {background-color: rgb(30,30,30);}
+
+QDialog	                                        {background-color: rgb(48,48,48);}
+
+QAction	                                        { background-color: rgb(20,20,20); }
+
+QCalendar                                       {background: rgb(100,100,100);
+                                                color: rgb(200,200,200);
+                                                selection-color: rgb(200,200,200);
+                                                selection-background-color: rgb(247,147,30);
+                                                alternate-background-color: rgb(90,90,90);
+                                                border: 1px solid rgb(247,147,30);}
+
+QAbstractProxyModel           {background:rgb(48,48,48); color:rgb(200,200,200)}
+
+QToolTip                                {background: rgb(40,40,40);
+                                                color: rgb(155,155,155)}
+
+
+QScrollBar:horizontal                           { background: rgb(20,20,20);
+                                                 height: 15px;
+                                                 margin: 0px 40px 0px 0px;}
+
+QScrollBar:vertical	                            { background: rgb(20,20,20);
+                                                width: 15px;
+                                                margin: 0px 0px 40 0px;}
+
+QScrollBar::handle:horizontal                   { background: qlineargradient(spread:reflect, x1:0, y1:0.1, x2:0, y2:0.5, stop:0 rgb(100,100,100), stop:1 rgb(105,105,105));
+                                                image:url(FULLPATH/HGrip.png);
+                                                border: 1px solid black;
+                                                min-width: 80px;}
+
+QScrollBar::handle:vertical	                    { background: qlineargradient(spread:reflect, x1:0.1, y1:0, x2:0.5, y2:0, stop:0 rgb(100,100,100), stop:1 rgb(105,105,105));
+                                                image:url(FULLPATH/VGrip.png);
+                                                border: 1px solid black;
+                                                min-height: 80px;}
+
+QScrollBar::add-line:horizontal	                { background: rgb(20,20,20);
+                                                width: 18px;
+                                                subcontrol-position: right;
+                                                subcontrol-origin: margin;
+                                                border: 1px solid black;}
+
+QScrollBar::add-line:vertical                   { background: rgb(20,20,20);
+                                                height: 18px;
+                                                subcontrol-position: bottom;
+                                                subcontrol-origin: margin;
+                                                border: 1px solid black;}
+
+QScrollBar::sub-line:horizontal                 { background: rgb(20,20,20);
+                                                width: 18px;
+                                                subcontrol-position: top right;
+                                                subcontrol-origin: margin;
+                                                border: 1px solid rgb(10, 10, 10);
+                                                border-radius: 2px;
+                                                position: absolute;
+                                                right: 20px}
+
+QScrollBar::sub-line:vertical                   { background: rgb(20,20,20);
+                                                height: 18px;
+                                                subcontrol-position: top bottom;
+                                                subcontrol-origin: margin;
+                                                border: 1px solid rgb(10, 10, 10);
+                                                border-radius: 1px;
+                                                position: absolute;
+                                                bottom: 20px}
+
+QScrollBar:left-arrow:horizontal                {width: 6px;
+                                                height: 6px;
+                                                image: url(FULLPATH/Left Arrow White.png)}
+
+QScrollBar:right-arrow:horizontal                {width: 6px;
+                                                height: 6px;
+                                                image: url(FULLPATH/Rigth Arrow White.png)}
+
+QScrollBar:up-arrow:vertical                    {width: 6px;
+                                                height: 6px;
+                                                image: url(FULLPATH/Up Arrow White.png)}
+
+QScrollBar:down-arrow:vertical                  {width: 6px;
+                                                height: 6px;
+                                                image: url(FULLPATH/Down Arrow White.png)}
+
+QScrollBar::add-page:horizontal	                { background: none;}
+
+QScrollBar::add-page:vertical                   { background: none;}
+
+QSizeGrip                                       {image: url(:/images/sizegrip.png);
+                                                 width: 16px;
+                                                 height: 16px;}
+
+QComboBox, QDoubleSpinBox, QTimeEdit, QDateEdit, QDateTimeEdit, QSpinBox
+                                                {color: rgb(220,220,220);
+                                                background-color: rgb(90,90,90);
+                                                font-size: 11px;}
+
+QComboBox:hover, QDoubleSpinBox:hover, QTimeEdit:hover, QDateEdit:hover, QDateTimeEdit:hover
+QSpinBox:hover
+                                                {border-color: solid rgb(247,147,30);}
+
+QRadioButton::indicator::checked                {background-color: rgb(60,60,60);}
+
+QCheckBox::indicator::checked                   {image: url(FULLPATH/checkbox_checked_custom.png);
+                                                background-color: rgb(60,60,60);
+                                                border: 1px solid black;}
+
+QCheckBox::indicator::unchecked	                {background-color: rgb(40,40,40);
+                                                border: 1px solid black;}
+
+QCheckBox::indicator:checked:hover              {image: url(FULLPATH/checkbox_checked_custom.png);
+                                                border: 1px solid rgb(247,147,30);}
+
+QCheckBox, QRadioButton                         {font-size: 11px;}
+
+QCheckBox::indicator::checked                   {image: url(FULLPATH/checkbox_checked_custom.png);
+                                                background-color: rgb(60,60,60);
+                                                border: 1px solid black;}
+
+QCheckBox::indicator::unchecked	                {background-color: rgb(40,40,40);
+                                                border: 1px solid black;}
+
+QCheckBox::indicator:checked:hover              {image: url(FULLPATH/checkbox_checked_custom.png);
+                                                border: 1px solid rgb(247,147,30);}
+
+QScrollBar                                      {color: solid black}
+
+QDockWidget	                                    {border: 1px solid black;
+                                                color: rgb(200,200,200);
+                                                font-size: 11px;
+                                                background: rgb(48,48,48) }
+
+QDockWidget::title                              { text-align: center;
+                                                background: rgb(48,48,48);
+                                                padding-left: 5px; }
+
+QDockWidget::close-button, QDockWidget::float-button {border: 1px solid transparent;
+                                                background: rgb(48,48,48);
+                                                padding: 0px;}
+
+QDialog	                                        {background-color: rgb(48,48,48);
+                                                color: rgb(200,200,200);}
+
+QLabel                                          {border: 1px solid transparent;
+                                                font-size: 11px;
+                                                color: rgb(200,200,200);}
+
+QLabel::disabled                                {background-color: solid black;
+                                                 color: rgb(180,180,180);
+                                                 font-style: normal;
+                                                 border: 1px solid transparent}
+
+QLineEdit                                       {color: rgb(220,220,220);
+                                                background: rgb(90,90,90);
+                                                font-size: 11px;
+                                                selection-color: rgb(255, 255, 255);
+                                                selection-background-color: rgb(247,147,30);}
+
+QLineEdit::disabled                             {color: rgb(180,180,180);}
+
+QGraphicsView                                   {background-color: rgb(40,40,40); }
+
+QGroupBox                                       { background-color: rgb(50,50,50);
+                                                color: rgb(200,200,200);
+                                                font-size: 10px;
+                                                padding-top: 12px;
+                                                border-radius: 4;
+                                                border: 2px solid rgb(90,90,90)}
+
+QHeaderView	                                    { background-color: rgb(70,70,70);
+                                                color: rgb(200,200,200);
+                                                font-family: "Tahoma";
+                                                font-size: 11px; }
+
+QHeaderView::down-arrow	                        {image: url(FULLPATH/Down Arrow Black.png);
+                                                padding: 1px 1px 1px -30px
+                                                }
+
+QHeaderView::up-arrow                           {image: url(FULLPATH/Up Arrow Black.png);
+                                                padding: 1px 1px 1px -30px;
+                                                width: 12px;
+                                                height: 12px;}
+
+QHeaderView:focus                               {border: 1px solid rgb(247,147,30);}
+
+
+QMenuBar, QMenu                                  {background: rgb(55, 55, 60);
+                                                 font-size: 11px;}
+
+QMenu::disabled                                 {background-color: solid black;
+                                                 color: rgb(180,180,180);
+                                                 font-style: normal;}
+
+QMenu::item	                                    {background: rgb(48,48,48);
+                                                color: rgb(48,48,48);
+                                                font-style: normal;
+                                                font-size: 11px;}
+
+QMenu::item:enabled	                            {background: rgb(48,48,48);
+                                                 color: rgb(200,200,200)}
+
+QMenu::item:selected                            {background-color: rgb(48,48,48);
+                                                color: rgb(70,70,70)}
+
+QMenu::item:selected:enabled                     {background-color: rgb(247,147,30);
+                                                 color: rgb(250,250,250);}
+
+QMenu::separator                                {background: rgb(100,100,100)}
+
+QMenuBar                                        {background: rgb(48,48,48);
+                                                color: rgb(200,200,200)}
+
+QMenuBar::disabled                              {
+                                                text-decoration: none;
+                                                color: rgb(20,20,20);
+                                                font-weight: bold;
+                                                font-family: tahoma;
+                                                padding:0px;
+                                                border-width: 0px;
+                                                border-radius: 0px;
+                                                border-style: solid;
+                                                margin:0px;}
+
+QMessageBox	                                    {background-color: rgb(48,48,48); }
+
+QPushButton, QToolButton                        {color: rgb(200,200,200);
+                                                font-size: 11px;
+                                                min-height: 20px;
+                                                min-width: 20px;
+                                                background-color: rgb(100,100,100);
+                                                selection-color: black;
+                                                border-style: outset;
+                                                border-width: 1px;
+                                                border-color: rgb(50,50,55);
+                                                border-radius: 3px;
+                                                selection-background-color: rgb(247,147,30); }
+QPushButton::disabled                           {color: rgb(180,180,180)}
+
+
+QAbstractButton	                                {color: rgb(200,200,200)}
+
+QAbstrackButton::disabled                       {color: rgb(180,180,180)}
+
+QTextEdit, QPlainTextEdit, QTextBrowser, QWebView, QToolBox
+                                                { background-color: rgb(40,40,40);
+                                                color: rgb(220,220,220);
+                                                border: 1px solid rgb(247,147,30);
+                                                selection-background-color: rgb(247,147,30);}
+
+QPushButton:pressed	                            { background-color: rgb(20,20,20); }
+
+QProgressBar                                    {color: rgb(200,200,200);
+                                                background-color: rgb(70,70,70);
+                                                selection-color: black;
+                                                border-width: 1px;
+                                                border-color: black;
+                                                selection-background-color: 247,147,30;
+                                                text-align: center;}
+
+QRubberBand	                                    { background-color: rgb(20,20,20); }
+
+QScrollArea                                     { background-color: rgb(20,20,20); }
+
+QSplitter                                       { background-color: rgb(48,48,48);
+                                                color: rgb(40, 40, 40);
+                                                }
+
+QSplitter::handle                               { background-color: rgb(20,20,20);
+                                                color: rgb(70,70,70);
+                                                border-style: solid}
+
+QSlider	                                        { background: rgb(100,100,100);}
+
+QSlider::handle:vertical, QSlider::handle:horizontal
+                                                { background: rgb(200, 0, 0);
+                                                  background-color: rgb(100,100,100);
+                                                  color: rgb(200,0, 2);
+                                                  border-style: solid;}
+
+QStackedWidget                                     { background-color: rgb(15,15,15);
+                                                  color: rgb(220,220,220);}
+
+QTabBar, QTabWidget	                            { color: rgb(200,200,200);
+                                                font-size: 11px;
+                                                border: 5px;
+                                                background-color: rgb(60,60,60);
+                                                selection-background-color: rgb(247,147,30);
+                                                }
+
+QTabBar::tab:selected, QTabWidget::tab:selected {
+                                                color: rgb( 200,200,200 );
+                                                background:qlineargradient(spread:linear, x1:0, y1:.2, x2:0, y2:0, stop:0 rgb(65,65,65), stop:1 rgb(70,70,70));
+                                                border: 0px;
+                                                border-radius: 2px;
+                                                margin: 2px;
+                                                }
+
+QTableView, QTableWidget, QListView, QListWidget, QTreeWidget, QTreeView
+
+                                                {background-color: rgb(100,100,100);
+                                                gridline-color: rgb(100,100,100);
+                                                color: rgb(200,200,200);
+                                                selection-background-color: rgb(247,147,30);
+                                                alternate-background-color: rgb(152,150,146);
+                                                font-family: "Tahoma";
+                                                font-size: 11px;
+                                                show-decoration-selected: 1;}
+
+QTreeView                             {font-size: 12px;}
+
+QTableView:disabled, QTableWidget:disabled, QListView:disable, QListWidget:disabled, QTreeView:disabled, QTreeWidget:disabled
+
+                                                {background: rgb(50,50,50);
+                                                color: rgb(90,90,90);
+                                                font-size: 11px;}
+
+QTreeView:disabled             {font-size: 12px;}
+
+QTreeView::item:hover, QTableView::item:hover, QListWidget::item:hover,
+QTreeWidget::item:hover, QTableWidget::item:hover, QListView::item:hover
+                                                {background: rgb(247,147,30, 170)}
+
+QTreeView::branch:open:has-children:!has-siblings, QTreeView::branch:open:has-children:has-siblings,
+QTreeWidget::branch:open:has-children:!has-siblings, QTreeWidget::branch:open:has-children:has-siblings
+
+                                                {border-image: none;
+                                                 url(FULLPATH/Down Arrow Black.png);}
+
+QTreeView::branch:close:has-children:!has-siblings, QTreeView::branch:close:has-children:has-siblings,
+QTreeWidget::branch:close:has-children:!has-siblings, QTreeWidget::branch:close:has-children:has-siblings
+
+                                                {border-image: none;
+                                                 url(FULLPATH/Up Arrow Black.png);}
+
+QDial                                           {background-color: rgb(DIAL_COLOR);}
+
+QDial::handle                                   {background-color: rgb(DIAL_COLOR);}
+
+QWidget	                                        {selection-background-color: rgb(247,147,30);}
