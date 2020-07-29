@@ -19,8 +19,7 @@ setup(
         'cvcloak.resources',
     ],
     package_data={
-        'cvcloak': ['*.py'],
-        'cvcloak.resources': ['*.png', '*.css', '*.ttf'],
+        'cvcloak': ['resources/*/*.*'],
     },
     package_dir={
         'cvcloak': 'src/cvcloak'
