@@ -44,7 +44,7 @@ class MainApp(QtWidgets.QWidget):
 
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         frame = cv2.flip(frame, 1)
-        image = qimage2ndarray.array2qimage(frame)  # SOLUTION FOR MEMORY LEAK
+        image = qimage2ndarray.array2qimage(frame)  # Solution for memory leak
         self.image_label.setPixmap(QtGui.QPixmap.fromImage(image))
 
 
