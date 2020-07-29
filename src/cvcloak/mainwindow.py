@@ -14,8 +14,6 @@ class MainApp(QtWidgets.QWidget):
         self.setup_camera()
 
     def setup_ui(self):
-        """Initialize widgets.
-        """
         self.image_label = QtWidgets.QLabel()
         self.image_label.setFixedSize(self.video_size)
 
@@ -29,8 +27,6 @@ class MainApp(QtWidgets.QWidget):
         self.setLayout(self.main_layout)
 
     def setup_camera(self):
-        """Initialize camera.
-        """
         self.capture = cv2.VideoCapture(0)
         self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, self.video_size.width())
         self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, self.video_size.height())
@@ -40,8 +36,6 @@ class MainApp(QtWidgets.QWidget):
         self.timer.start(30)
 
     def display_video_stream(self):
-        """Read frame from camera and repaint QLabel widget.
-        """
         ret, frame = self.capture.read()
 
         # Wait till capture initializes
