@@ -2,13 +2,15 @@
 from distutils.core import setup
 from glob import glob
 
+
 PACKAGE_NAME = 'cvcloak'
 PACKAGE_VERSION = '0.1'
+
 
 setup(
     name=PACKAGE_NAME,
     version=PACKAGE_VERSION,
-    description='The magic inivisibility cloak implemented in opencv',
+    description='Inivisibility cloak implemented in opencv',
     author='Alok Gandhi',
     author_email='alok.gandhi2002@gmail.com',
     url='https://github.com/alok1974/cloak',
@@ -17,8 +19,7 @@ setup(
         'cvcloak.resources',
     ],
     package_data={
-        'cvcloak': ['*.py'],
-        'cvcloak.resources': ['*.png', '*.css', '*.ttf'],
+        'cvcloak': ['resources/*/*.*'],
     },
     package_dir={
         'cvcloak': 'src/cvcloak'
@@ -33,9 +34,9 @@ setup(
     ],
     license='MIT',
     classifiers=[
-        'Development Status :: 5 - Production/Stable',
-        'Intended Audience :: End Users/Desktop',
-        'Topic :: Games/Entertainment :: Board Games',
+        'Development Status :: 2 - Pre-Alpha',
+        'Operating System :: OS Independent',
         'License :: OSI Approved :: MIT License',
+        'Programming Language:: Python:: 3.7'
     ],
 )
