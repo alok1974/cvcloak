@@ -2,6 +2,7 @@
 
 Invisible cloak (a la Harry Potter) implemented in opencv
 
+![cvcloak.png](https://github.com/alok1974/cvcloak/blob/develop/cvcloak.png)
 
 ## Installing
 ```

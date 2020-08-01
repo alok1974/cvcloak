@@ -292,7 +292,7 @@ class MainWindow(QtWidgets.QWidget):
             raise RuntimeError(error_msg)
 
         self._background = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-        self._background_captured = True
+        self._background_captured = False
 
     def _display_video_stream(self):
         if not self._background_captured:
