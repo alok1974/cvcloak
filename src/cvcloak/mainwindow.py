@@ -30,6 +30,7 @@ class MainWindow(QtWidgets.QWidget):
         super().__init__(parent=parent)
         self._capture = None
         self._background = None
+        self._background_captured = False
         self._frame = None
         self._image = None
         self._show_calib = False
@@ -78,11 +79,15 @@ class MainWindow(QtWidgets.QWidget):
 
     def _create_image_layout(self):
         self._image_layout = QtWidgets.QVBoxLayout()
+
+        self._image = QtGui.QImage()
+        self._image.load(APP.SPLASH_SCREEN_PATH)
         self._image_label = QtWidgets.QLabel()
         self._image_label.setStyleSheet(
             'QWidget { border: 1px solid #5A5A5A; }'
         )
         self._image_label.setMinimumSize(APP.IMAGE_WIDTH, APP.IMAGE_HEIGHT)
+        self._image_label.setPixmap(QtGui.QPixmap.fromImage(self._image))
         self._image_layout.addWidget(self._image_label)
 
         return self._image_layout
@@ -212,7 +217,11 @@ class MainWindow(QtWidgets.QWidget):
 
     def _setup_camera(self):
         self._initialize_capture()
-        self._background = self._get_background()
+
+        # Wait some time for capture to initialize
+        QtCore.QTimer.singleShot(3000, self._set_background)
+
+        # Now start the display
         self._timer = QtCore.QTimer()
         self._timer.start(30)
 
@@ -265,7 +274,7 @@ class MainWindow(QtWidgets.QWidget):
         self._capture.set(cv2.CAP_PROP_FRAME_WIDTH, APP.IMAGE_WIDTH)
         self._capture.set(cv2.CAP_PROP_FRAME_HEIGHT, APP.IMAGE_HEIGHT)
 
-    def _get_background(self):
+    def _set_background(self):
         ret = False
         frame = None
         while True:
@@ -282,9 +291,13 @@ class MainWindow(QtWidgets.QWidget):
             )
             raise RuntimeError(error_msg)
 
-        return cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        self._background = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        self._background_captured = True
 
     def _display_video_stream(self):
+        if not self._background_captured:
+            return
+
         ret, frame = self._capture.read()
 
         # Wait till capture initializes

@@ -36,3 +36,5 @@ class APP:
 
     FONT_FAMILY = 'Andale Mono'
     FONT_FILE_PATH = os.path.join(RESOURCE_DIR, f'font/{FONT_FAMILY}.ttf')
+
+    SPLASH_SCREEN_PATH = os.path.join(RESOURCE_DIR, 'image/splash.png')
