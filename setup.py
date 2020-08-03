@@ -4,7 +4,7 @@ from glob import glob
 
 
 PACKAGE_NAME = 'cvcloak'
-PACKAGE_VERSION = '0.1'
+PACKAGE_VERSION = '0.2'
 
 
 setup(
@@ -13,7 +13,7 @@ setup(
     description='Inivisibility cloak implemented in opencv',
     author='Alok Gandhi',
     author_email='alok.gandhi2002@gmail.com',
-    url='https://github.com/alok1974/cloak',
+    url='https://github.com/alok1974/cvcloak',
     packages=[
         'cvcloak',
         'cvcloak.resources',
