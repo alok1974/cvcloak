@@ -4,7 +4,7 @@ from glob import glob
 
 
 PACKAGE_NAME = 'cvcloak'
-PACKAGE_VERSION = '0.2'
+PACKAGE_VERSION = '0.3'
 
 
 setup(
