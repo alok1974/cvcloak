@@ -4,13 +4,11 @@ from functools import partial
 
 
 from PySide2 import QtCore, QtWidgets, QtGui
-import qimage2ndarray  # This import should always follow Pyside2 imports
-import cv2
-import numpy as np
 
 
 from .conf import APP
 from .widgets import ColorBandWidget, block_widget_signals
+from . import opencv
 
 
 @enum.unique
@@ -31,7 +29,6 @@ class MainWindow(QtWidgets.QWidget):
         self._capture = None
         self._background = None
         self._background_captured = False
-        self._frame = None
         self._image = None
         self._show_calib = False
 
@@ -265,104 +262,38 @@ class MainWindow(QtWidgets.QWidget):
         )
 
     def _initialize_capture(self):
-        self._capture = cv2.VideoCapture(APP.CAMERA_DEVICE_INT)
-        while True:
-            if self._capture.isOpened():
-                break
-            self._capture.open()
-
-        self._capture.set(cv2.CAP_PROP_FRAME_WIDTH, APP.IMAGE_WIDTH)
-        self._capture.set(cv2.CAP_PROP_FRAME_HEIGHT, APP.IMAGE_HEIGHT)
+        self._capture = opencv.open_capture(
+            camera_int=APP.CAMERA_DEVICE_INT,
+            width=APP.IMAGE_WIDTH,
+            height=APP.IMAGE_HEIGHT,
+        )
 
     def _set_background(self):
-        ret = False
-        frame = None
-        while True:
-            for _ in range(30):
-                ret, frame = self._capture.read()
-                frame = cv2.flip(frame, 1)
-            if ret:
-                break
-
-        if frame is None:
-            self._capture.release()
-            error_msg = (
-                "Unable to initialize the background!"
-            )
-            raise RuntimeError(error_msg)
-
-        self._background = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        self._background = opencv.get_background(self._capture)
         self._background_captured = True
 
     def _display_video_stream(self):
-        if not self._background_captured:
+        frame = opencv.get_frame(
+            capture=self._capture,
+            background=self._background,
+            low_color_1=self._band_1_low_color,
+            high_color_1=self._band_1_high_color,
+            low_color_2=self._band_2_low_color,
+            high_color_2=self._band_2_high_color,
+        )
+
+        if frame is None:
             return
 
-        ret, frame = self._capture.read()
-
-        # Wait till capture initializes
-        if not ret:
-            return
-
-        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-        frame = cv2.flip(frame, 1)
-        self._frame = self._process_capture(frame)
-
-        # Using `qimage2ndarray` to fix memory leak
-        self._image = qimage2ndarray.array2qimage(self._frame)
+        self._image = self._array_to_qimage(frame)
         self._image_label.setPixmap(QtGui.QPixmap.fromImage(self._image))
 
-    def _process_capture(self, frame):
-        # Define 1st color band
-        lower_band_1 = np.array(list(self._band_1_low_color))
-        upper_band_1 = np.array(list(self._band_1_high_color))
-        color_band_1 = cv2.inRange(frame, lower_band_1, upper_band_1)
-
-        # Define second color band
-        lower_band_2 = np.array(list(self._band_2_low_color))
-        upper_band_2 = np.array(list(self._band_2_high_color))
-        color_band_2 = cv2.inRange(frame, lower_band_2, upper_band_2)
-
-        # Combine color bands into single mask
-        color_mask = color_band_1 + color_band_2
-
-        # Apply noise filter to color mask
-        color_mask = cv2.morphologyEx(
-            color_mask,
-            cv2.MORPH_OPEN,
-            np.ones((3, 3), np.uint8),
-            iterations=8,
-        )
-
-        # Apply smooth filter to color mask
-        color_mask = cv2.morphologyEx(
-            color_mask,
-            cv2.MORPH_DILATE,
-            np.ones((3, 3), np.uint8),
-            iterations=1,
-        )
-
-        # Replace the mask color with color from
-        # captured one frame background
-        masked_bg = cv2.bitwise_and(
-            self._background,
-            self._background,
-            mask=color_mask,
-        )
-
-        # Get the inverse of the color mask
-        inverse_color_mask = cv2.bitwise_not(color_mask)
-
-        # Get the color of the current frame sans the color mask
-        masked_frame = cv2.bitwise_and(frame, frame, mask=inverse_color_mask)
-
-        # Composite the background and current frame colors
-        composite = cv2.addWeighted(masked_bg, 1, masked_frame, 1, 0)
-
-        # Convert HSV to RGB for display
-        final_composite = cv2.cvtColor(composite, cv2.COLOR_HSV2RGB)
-
-        return final_composite
+    def _array_to_qimage(self, frame):
+        # NOTE: Using `qimage2ndarray` (pip install qimage2ndarray).
+        # This fixes memory leak issues. This import should always
+        # follow Pyside2 imports as it does runtime detection of modules.
+        import qimage2ndarray
+        return qimage2ndarray.array2qimage(frame)
 
     def _toggle_calib(self):
         self._show_calib = not(self._show_calib)
@@ -377,14 +308,8 @@ class MainWindow(QtWidgets.QWidget):
             self.setFixedSize(self._main_layout.sizeHint())
 
     def _close(self):
-        self._capture.release()
-        cv2.destroyAllWindows()
+        opencv.close_capture(self._capture)
         self.close()
-
-    def _pick_color(self):
-        color = QtWidgets.QColorDialog.getColor()
-        self._color_label.setStyleSheet(
-            "QWidget { background-color: %s}" % color.name())
 
     def _color_changed(
             self, color,
